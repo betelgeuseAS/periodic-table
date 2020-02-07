@@ -1,12 +1,13 @@
 # Periodic Table
-Description.
+Periodic table of chemical elements.
 
 ---
 
 ## Technologies
-* `HTML` / `*`
+* `HTML`
 * `CSS` / `Sass`
-* `JS` / `*`
+* `JS`
+* `Gulp`
 
 ## Quickstart
 1. `git clone https://github.com/betelgeuseAS/PeriodicTable.git`
@@ -16,7 +17,4 @@ Description.
 If the tab doesn't open on your own browser, then open your web browser to localhost:3000.
 
 ## Illustrations
-![Image alt](https://github.com/betelgeuseAS/Hegemony/raw/master/client/src/img/illustration/admin.jpg)
-
-## Dependencies
-* `nameDependency`: Description Dependency
+![Image alt](https://github.com/betelgeuseAS/Hegemony/raw/master/app/img/illustrations/01.jpg)
