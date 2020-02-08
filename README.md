@@ -17,4 +17,4 @@ Periodic table of chemical elements.
 If the tab doesn't open on your own browser, then open your web browser to localhost:3000.
 
 ## Illustrations
-![Table](/app/img/illustrations/01.jpg)
+![](/app/img/illustrations/01.jpg)
