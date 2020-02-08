@@ -1,35 +1,14 @@
 // Variables
-$c-main: hsla(0, 100%, 100%, 1)
-$c-element-other-nonmetals: hsla(184, 9%, 62%, 1)
-$c-element-alkali-metals: hsla(6, 78%, 57%, 1)
-$c-element-alkali-earth-metals: hsla(28, 80%, 52%, 1)
-$c-element-transition-metals: hsla(48, 89%, 50%, 1)
-$c-element-lanthanoids: hsla(21, 78%, 81%, 1)
-$c-element-actinoids: hsla(20, 74%, 68%, 1)
-$c-element-post-transition-metals: hsla(168, 76%, 42%, 1)
-$c-element-metalloids: hsla(204, 70%, 53%, 1)
-$c-element-noble-gas: hsla(282, 44%, 47%, 1)
-$c-element-unknown: darken($c-element-transition-metals, 12%)
-$c-element-self: (hydrogen: 'hsla(0, 100%, 100%, 1)',)
-$c-shadow-main: hsla(0, 1%, 53%, 1)
-$bg-main: hsla(210, 3%, 15%, 1)
-$table-min-width:  1300px
-$element-width: 70px
-$grid-gap: 5px
-$modal-width: 750px
-$cubic-bezier: cubic-bezier(0.23, 1, 0.32, 1)
-$scale: 1.075
-
-// Mixins
-@mixin element-color($element)
-	@if map-has-key($c-element-self, $element)
-		color: #{map-get($c-element-self, $element)}
-		background-color: #{map-get($c-element-self, $element)}
-	@else
-		@warn 'Unfortunately, no value could be retrieved from `#{$c-element-self}`. ' + 'Please make sure it is defined in `$c-element-self` map.'
+@import "vars"
 
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Montserrat')
+@import "fonts"
+
+// Libs
+@import "libs"
+
+// Mixins
+@import "_mixins/element-color"
 
 // General
 *
@@ -56,9 +35,9 @@ main
 	@media screen and (max-width: $table-min-width + $element-width * 2 + $grid-gap * 2)
 		justify-content: normal
 	@media screen and (min-aspect-ratio: 1 / 1)
-		height: 150vh
+		height: 115vh
 	@media screen and (min-aspect-ratio: 1 / 4)
-		height: 155vh
+		height: 120vh
 	@media screen and (max-aspect-ratio: 1 / 5)
 		height: 50vw
 
@@ -1135,4 +1114,5 @@ li
 	100%
 		margin-top: -1rem
 
-//@import "media" // Always at the end
+// Media
+@import "media" // Always at the end

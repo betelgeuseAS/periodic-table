@@ -1,0 +1,6 @@
+@mixin element-color($element)
+  @if map-has-key($c-element-self, $element)
+    color: #{map-get($c-element-self, $element)}
+    background-color: #{map-get($c-element-self, $element)}
+  @else
+    @warn 'Unfortunately, no value could be retrieved from `#{$c-element-self}`. ' + 'Please make sure it is defined in `$c-element-self` map.'

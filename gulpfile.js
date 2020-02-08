@@ -35,7 +35,6 @@ gulp.task('styles', function() {
 
 gulp.task('scripts', function() {
 	return gulp.src([
-		'app/libs/jquery/dist/jquery.min.js',
 		'app/js/data.js',
 		'app/js/common.js', // Always at the end
 		])
