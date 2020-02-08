@@ -459,7 +459,7 @@ li
 			&::after
 				content: "Drag and drop to modify temperature and element's state"
 				position: absolute
-				top: -1.5rem
+				top: -2.1rem
 				left: 0
 				right: 0
 				text-align: center
@@ -980,6 +980,7 @@ li
 			left: 0
 			right: 0
 			animation: up-and-down 7s ease infinite
+			opacity: .1
 			&__core
 				position: absolute
 				top: 50%
@@ -1026,8 +1027,8 @@ li
 			border-right: 3px solid darken($c-shadow-main, 5%)
 			transform-origin: 100% 0%
 		&__properties
-			display: grid
-			grid-template: repeat(auto-fill, minmax($element-width, 1fr)) / repeat(10,  $element-width)
+			//display: grid
+			//grid-template: repeat(auto-fill, minmax($element-width, 1fr)) / repeat(10,  $element-width)
 			height: 100%
 	&__close
 		position: absolute
