@@ -1,0 +1,124 @@
+.modal
+  align-items: center
+  justify-content: center
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  visibility: hidden
+  opacity: 0
+  background-color: darken(rgba($c-shadow-main, .975), 30%)
+  z-index: 1000
+  will-change: visibility, opacity
+  transition: all .5s $cubic-bezier
+  &__dialog
+    position: relative
+    max-width: $modal-width
+    width: 100%
+    max-height: 90%
+    height: 100%
+    padding: 1.2rem
+    border: none
+    background: none
+  &__content
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    padding: 1.5rem
+    opacity: 0
+    border: 3px solid transparent
+    transition: all .25s $cubic-bezier
+    &.--is-visible
+      opacity: 1
+      border: 3px solid transparent
+      color: $c-main
+      &::before,
+      &::after
+        transform: scale(1)
+    .atom
+      position: absolute
+      top: $element-width + $grid-gap * 2
+      left: 0
+      right: 0
+      animation: up-and-down 7s ease infinite
+      opacity: .1
+      &__core
+        position: absolute
+        top: 50%
+        left: 50%
+        width: 1.5rem
+        height: 1.5rem
+        border-radius: 50%
+        background-color: darken($c-shadow-main, 5%)
+        z-index: 0
+      &::before,
+      &::after
+        content: ''
+        position: absolute
+        top: 50%
+        left: 50%
+        margin: -($element-width - $grid-gap) 0 -($element-width - $grid-gap) 0
+        width: $element-width * 2 + $grid-gap * 2
+        height: $element-width * 2 + $grid-gap * 2
+        border-radius: 50%
+        border: 4px solid darken($c-shadow-main, 5%)
+      &::before
+        z-index: 1
+        animation: clockwise-rotation-2 2s linear infinite
+      &::after
+        z-index: 2
+        animation: clockwise-rotation-1 2s linear infinite
+    &::before,
+    &::after
+      content: ''
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      z-index: 3
+      transform: scale(0)
+      transition: all .7s $cubic-bezier
+    &::before
+      border-bottom: 3px solid darken($c-shadow-main, 5%)
+      border-left: 3px solid darken($c-shadow-main, 5%)
+      transform-origin: 0 100%
+    &::after
+      border-top: 3px solid darken($c-shadow-main, 5%)
+      border-right: 3px solid darken($c-shadow-main, 5%)
+      transform-origin: 100% 0%
+    &__properties
+      //display: grid
+      //grid-template: repeat(auto-fill, minmax($element-width, 1fr)) / repeat(10,  $element-width)
+      height: 100%
+  &__close
+    position: absolute
+    top: 1rem
+    right: 1rem
+    width: 1.75rem
+    height: 1.75rem
+    padding: .15rem
+    background: transparent
+    cursor: pointer
+    z-index: 100
+    transition: all .5s $cubic-bezier
+    svg
+      width: 1.75rem
+      height: 1.75rem
+      border: 2px solid darken($c-shadow-main, 5%)
+      fill: darken($c-shadow-main, 5%)
+      pointer-events: none
+      transition: all 0.5s $cubic-bezier
+    &:hover
+      svg
+        background: darken($c-shadow-main, 5%)
+        fill: darken($c-shadow-main, 30%)
+    &:active
+  &.--modal__background
+    background: $c-shadow-main
+  &.--is-visible
+    visibility: visible
+    opacity: 1

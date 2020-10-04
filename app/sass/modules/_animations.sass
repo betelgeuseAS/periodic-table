@@ -1,0 +1,30 @@
+@keyframes focus
+  to
+    border: 2px solid lighten($bg-main, 10%)
+    color: lighten($bg-main, 50%)
+    font-weight: 600
+    box-shadow: 0 0 1rem $c-shadow-main
+
+@keyframes lighten-background
+  to
+    background-color: lighten($bg-main, 30%)
+
+@keyframes clockwise-rotation-1
+  from
+    transform: perspective(1000px) rotate3d(1, 1, 1, 0deg)
+  to
+    transform: perspective(1000px) rotate3d(1, 1, 1, 360deg)
+
+@keyframes clockwise-rotation-2
+  from
+    transform: perspective(1000px) rotate3d(1, -1, 1, 0deg)
+  to
+    transform: perspective(1000px) rotate3d(1, -1, 1, 360deg)
+
+@keyframes up-and-down
+  0%
+    margin-top: -1rem
+  50%
+    margin-top: 1rem
+  100%
+    margin-top: -1rem

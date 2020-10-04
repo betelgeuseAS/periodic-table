@@ -1,0 +1,136 @@
+.group-period
+  height: 100%
+  width: 100%
+  position: relative
+  min-width: $table-min-width + $element-width * 2 + $grid-gap * 2
+  background: radial-gradient(lighten($bg-main, 25%), $bg-main)
+
+.group,
+.period
+  &__list
+    background: lighten($bg-main, 2.5%)
+    box-shadow: 0 0 .5rem $bg-main
+  &__item
+    cursor: default
+    span
+      transition: all .2s ease
+    &:hover
+      span
+        box-shadow: 0 0 1rem darken($c-shadow-main, 30%)
+        font-size: 1.5rem
+
+.group
+  &__list
+    position: sticky
+    top: 0
+    display: grid
+    grid-template: repeat(1, $element-width / 1.5) / repeat(18, $element-width)
+    grid-gap: $grid-gap
+    justify-content: center
+    width: 100%
+    min-width: $table-min-width
+    height: $element-width / 1.5
+    margin: 0 auto
+    font-size: 1rem
+    z-index: 10
+    &.--is-fixed
+      z-index: 20
+      .group-1
+        &::before
+          display: none
+        &::after
+          @media screen and (max-width: $table-min-width + $element-width * 2 + $grid-gap * 2)
+            transform: translateX(-25%) rotate(0)
+  &__item
+    width: $element-width
+    justify-content: center
+    align-items: center
+    border-right: 1px solid $c-main
+    span:nth-of-type(2)
+      flex-basis: 100%
+      text-align: center
+      font-size: .75rem
+    &.group-1
+      border-left: 1px solid $c-main
+      transition: all .2s ease
+      &::after
+        content: 'Group'
+        position: absolute
+        top: 50%
+        font-size: .75rem
+        left: -$element-width / 2 - $grid-gap
+        transform: translateY(-50%)
+        cursor: auto
+        transition: all .2s ease
+        @media screen and (max-width: $table-min-width + $element-width * 2 + $grid-gap * 2)
+          top: 1.25rem
+          left: -$element-width / 2 - $grid-gap + 5
+          transform: translateY(-50%) rotate(45deg)
+      &::before
+        transition: all .2s ease
+        @media screen and (max-width: $table-min-width + $element-width * 2 + $grid-gap * 2)
+          content: ''
+          position: absolute
+          width: 50px
+          height: 1px
+          background-color: $c-main
+          transform: rotate(45deg)
+          left: -$element-width / 2 - 20px
+    &.group-15,
+    &.group-16,
+    &.group-17
+      span:nth-of-type(1)
+        margin-top: .75rem
+
+.period
+  &__list
+    position: absolute
+    display: grid
+    grid-template: repeat(8, $element-width) / repeat(1, $element-width / 1.5)
+    grid-gap: $grid-gap
+    width: 100%
+    min-width: $element-width / 1.5
+    max-width: $element-width / 1.5
+    padding-top: .4rem
+    font-size: 1rem
+    &.--is-fixed
+      z-index: 10
+      .period-1
+        &::before
+          content: ''
+          position: absolute
+          background: lighten($bg-main, 2.5%)
+          width: 100%
+          height: 75%
+          box-shadow: 0 0 .5rem $bg-main
+          transform: translate(0, -125%)
+        &::after
+          transform: translateX(25%) rotate(0)
+  &__item
+    width: $element-width / 1.5
+    justify-content: center
+    align-items: center
+    border-bottom: 1px solid $c-main
+    &.period-1
+      border-top: 1px solid $c-main
+      &::before
+        @media screen and (min-width: $table-min-width + $element-width * 4 + $grid-gap * 2)
+          content: ''
+          position: absolute
+          background: lighten($bg-main, 2.5%)
+          width: 100%
+          height: 75%
+          box-shadow: 0 0 .5rem $bg-main
+          transform: translate(0, -125%)
+      &::after
+        content: 'Period'
+        position: absolute
+        font-size: .75rem
+        top: -.5rem
+        transform: translateY(-50%)
+        cursor: auto
+        transition: all .2s ease
+        @media screen and (max-width: $table-min-width + $element-width * 2 + $grid-gap * 2)
+          top: -1.25rem
+          left: -3px
+          transform: translateY(-50%) rotate(45deg)
