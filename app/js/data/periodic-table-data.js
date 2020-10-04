@@ -1,4 +1,7 @@
-const elementDescription = {
+const elementsDescription = {
+  'Empty': {
+    name: 'Blank'
+  },
   "Hydrogen": {
     "name": "Element: Hydrogen",
     "symbol": "Symbol: H",
