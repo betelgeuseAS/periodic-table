@@ -32,7 +32,13 @@ gulp.task('styles', function() {
 
 gulp.task('scripts', function() {
 	return gulp.src([
-		'app/js/data.js',
+		'app/js/data/periodic-table-data.js',
+		'app/js/helpers/helper.js',
+		'app/js/components/modal.js',
+		'app/js/components/temperature.js',
+		'app/js/components/group-period.js',
+		'app/js/components/actinoid-lanthanoid.js',
+		'app/js/components/legend.js',
 		'app/js/common.js', // Always at the end
 		])
 	.pipe(concat('scripts.min.js'))
@@ -63,7 +69,7 @@ gulp.task('rsync', function() {
 
 gulp.task('watch', function() {
 	gulp.watch('app/sass/**/*.sass', gulp.parallel('styles'));
-	gulp.watch(['libs/**/*.js', 'app/js/common.js'], gulp.parallel('scripts'));
+	gulp.watch(['libs/**/*.js', 'app/js/data/**/*.js', 'app/js/components/**/*.js', 'app/js/helpers/**/*.js', 'app/js/common.js'], gulp.parallel('scripts'));
 	gulp.watch('app/*.html', gulp.parallel('code'))
 });
 gulp.task('default', gulp.parallel('styles', 'scripts', 'browser-sync', 'watch'));
