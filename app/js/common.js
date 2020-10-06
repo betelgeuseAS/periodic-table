@@ -1,5 +1,5 @@
-document.addEventListener('DOMContentLoaded', ready);
+import Modal from './modules/modal.js';
 
-function ready() {
-  console.log('DOM is ready');
-}
+document.addEventListener('DOMContentLoaded', function () {
+  Modal.run();
+});

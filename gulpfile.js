@@ -1,12 +1,18 @@
-var gulp          = require('gulp'),
-		sass          = require('gulp-sass'),
-		browserSync   = require('browser-sync'),
-		concat        = require('gulp-concat'),
-		cleancss      = require('gulp-clean-css'),
-		rename        = require('gulp-rename'),
-		autoprefixer  = require('gulp-autoprefixer'),
-		notify        = require('gulp-notify'),
-		rsync         = require('gulp-rsync');
+let gulp = require('gulp'),
+		sass = require('gulp-sass'),
+		uglify = require('gulp-uglify'),
+		browserSync = require('browser-sync'),
+		concat = require('gulp-concat'),
+		sourcemaps = require('gulp-sourcemaps'),
+		cleancss = require('gulp-clean-css'),
+		rename = require('gulp-rename'),
+		autoprefixer = require('gulp-autoprefixer'),
+		notify = require('gulp-notify'),
+		rsync = require('gulp-rsync'),
+		browserify = require('browserify'),
+		babelify = require('babelify'),
+		source = require('vinyl-source-stream'),
+		buffer = require('vinyl-buffer');
 
 gulp.task('browser-sync', function() {
 	browserSync({
@@ -30,21 +36,26 @@ gulp.task('styles', function() {
 	.pipe(browserSync.stream())
 });
 
-gulp.task('scripts', function() {
-	return gulp.src([
-		'app/js/data/periodic-table-data.js',
-		'app/js/helpers/helper.js',
-		'app/js/components/modal.js',
-		'app/js/components/temperature.js',
-		'app/js/components/group-period.js',
-		'app/js/components/actinoid-lanthanoid.js',
-		'app/js/components/legend.js',
-		'app/js/common.js', // Always at the end
-		])
-	.pipe(concat('scripts.min.js'))
-	// .pipe(uglify()) // Minify js (opt.)
-	.pipe(gulp.dest('app/js'))
-	.pipe(browserSync.reload({ stream: true }))
+gulp.task('scripts', function(done) {
+	['common.js'].map(function (entry) {
+		return browserify({
+			entries: ['app/js/' + entry]
+		})
+		.transform(babelify, {presets: ['@babel/preset-env']})
+		.bundle()
+		.pipe(source(entry))
+		.pipe(rename({extname: '.min.js'}))
+		.pipe(buffer())
+		.pipe(sourcemaps.init({loadMaps: true}))
+		.pipe(uglify()) // Minify js (opt.)
+		.pipe(sourcemaps.write('./'))
+		.pipe(gulp.dest('app/js/'))
+		.pipe(browserSync.reload({ stream: true }))
+
+		// .pipe(concat('scripts.min.js'))
+	});
+
+	done();
 });
 
 gulp.task('code', function() {
@@ -69,7 +80,8 @@ gulp.task('rsync', function() {
 
 gulp.task('watch', function() {
 	gulp.watch('app/sass/**/*.sass', gulp.parallel('styles'));
-	gulp.watch(['libs/**/*.js', 'app/js/data/**/*.js', 'app/js/components/**/*.js', 'app/js/helpers/**/*.js', 'app/js/common.js'], gulp.parallel('scripts'));
+	gulp.watch(['libs/**/*.js', 'app/js/modules/**/*.js', 'app/js/common.js'], gulp.parallel('scripts'));
 	gulp.watch('app/*.html', gulp.parallel('code'))
 });
+
 gulp.task('default', gulp.parallel('styles', 'scripts', 'browser-sync', 'watch'));

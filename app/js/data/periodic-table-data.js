@@ -28,3 +28,5 @@ const elementsDescription = {
     "miscellaneous": "Discovered in 1766 by Henry Cavendish (named by Antoine Lavoisier in 1783)"
   }
 };
+
+export default elementsDescription;
