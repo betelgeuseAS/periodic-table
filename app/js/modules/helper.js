@@ -45,7 +45,7 @@ class Helper {
             elementItem.setAttribute('data-element-state', 'solid');
           }
           else if (dataElement < boilingPoint) {
-            if (isLanthanoidOrActinoid(elementItem)) {
+            if (this.isLanthanoidOrActinoid(elementItem)) {
               elementItem.setAttribute('data-element-state', 'liquid');
             }
           } else {
@@ -63,7 +63,7 @@ class Helper {
       }
 
       if (dataElement === dataFromElement) {
-        addClass('--is-active', elementItem, index);
+        this.addClass('--is-active', elementItem, index);
       }
 
       index++;
@@ -76,7 +76,7 @@ class Helper {
       elementList = document.querySelectorAll('.element');
 
     Array.from(elementList).forEach(elementItem => {
-      removeClass('--is-active', elementItem, index);
+      this.removeClass('--is-active', elementItem, index);
       index++;
     });
   }
